@@ -13,8 +13,9 @@ jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.di
 
 class Greeting(db.Model):
     """Models an individual Guestbook entry with an author, content, and date."""
-    author = db.UserProperty()
+    author = db.StringProperty()
     content = db.StringProperty(multiline=True)
+    picture = db.StringProperty()
     date = db.DateTimeProperty(auto_now_add=True)
 
 
@@ -56,10 +57,9 @@ class Guestbook(webapp2.RequestHandler):
         guestbook_name = self.request.get('guestbook_name')
         greeting = Greeting(parent=guestbook_key(guestbook_name))
 
-        if users.get_current_user():
-            greeting.author = users.get_current_user()
-
+        greeting.author = self.request.get('author')
         greeting.content = self.request.get('content')
+        greeting.picture = self.request.get('picture')
         greeting.put()
         
         self.redirect('/posts?' + urllib.urlencode({'guestbook_name': guestbook_name}))
@@ -74,12 +74,11 @@ class AllPosts(webapp2.RequestHandler):
         result = []
         for g in greetings:
             this_greeting = {}
-            if g.author: 
-                this_greeting['author'] = g.author.nickname()
-            if g.content:
-                this_greeting['content'] = g.content
+            this_greeting['author'] = g.author
+            this_greeting['content'] = g.content
             this_greeting['date'] = (g.date + datetime.timedelta(hours=8)).strftime('%m/%d %H:%M')
-            this_greeting['key'] = str(g.key()) 
+            this_greeting['key'] = str(g.key())
+            this_greeting['picture'] = g.picture
             result.append(this_greeting)
 
         self.response.out.write(simplejson.dumps(result))

@@ -1,8 +1,20 @@
-.container {
-  margin-top: 20px;
-}
+/*
+.container
+  margin-top: 20px
+*/
 .post {
+  clear: both;
   padding: 10px;
+}
+.post img {
+  float: left;
+}
+.post div {
+  flaot: left;
+  margin-left: 60px;
+}
+#main {
+  margin-top: 60px;
 }
 .post:hover {
   background: #f5f5f5;
@@ -15,4 +27,8 @@
 }
 textarea {
   height: 42px;
+}
+.brand {
+  font-family: 'Lobster', cursive;
+  color: #fff;
 }

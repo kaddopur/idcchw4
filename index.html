@@ -3,21 +3,27 @@
   <head>
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="css/bootstrap-responsive.min.css">
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster">
     <link type="text/css" rel="stylesheet" href="css/index.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
   </head>
   <body>
-    <div class="container">
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container"><a href="/" class="brand">HW4 - r99922066</a></div>
+      </div>
+    </div>
+    <div id="main" class="container">
       <div class="row">
         <div id="edit_area" class="span4 well"><img id="profile" src="img/yetlogin.png">
           <textarea name="content" class="input-xlarge"></textarea>
           <button id="send" class="btn">Sign Guestbook</button>
           <!--a.btn.btn-warning(href='{{ url }}') {{url_linktext }}-->
-          <div id="login" class="btn">Login with Facebook</div>
-          <div id="logout" class="btn">Logout</div>
+          <div id="login" class="btn btn-primary">Login with Facebook</div>
+          <div id="logout" class="btn btn-warning">Logout</div>
         </div>
-        <div id="display_area" class="span6"></div>
+        <div id="display_area" class="span6 well"></div>
       </div>
     </div>
     <script type="text/javascript" src="js/index.js"></script>
@@ -25,7 +31,7 @@
       window.fbAsyncInit = function() {
         FB.init({
           appId      : '236955576406422', // App ID
-          channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
+          channelUrl : '//localhost/channel.html', // Channel File
           status     : true, // check login status
           cookie     : true, // enable cookies to allow the server to access the session
           xfbml      : true  // parse XFBML
@@ -42,6 +48,7 @@
          js.src = "//connect.facebook.net/en_US/all.js";
          ref.parentNode.insertBefore(js, ref);
       }(document));
+      
       
       
     </script>
