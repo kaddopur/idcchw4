@@ -10,13 +10,40 @@
   <body>
     <div class="container">
       <div class="row">
-        <div id="edit_area" class="span4 well">
+        <div id="edit_area" class="span4 well"><img id="profile" src="img/yetlogin.png">
           <textarea name="content" class="input-xlarge"></textarea>
-          <button id="send" class="btn">Sign Guestbook</button><a href="{{ url }}" class="btn btn-warning">{{url_linktext }}</a>
+          <button id="send" class="btn">Sign Guestbook</button>
+          <!--a.btn.btn-warning(href='{{ url }}') {{url_linktext }}-->
+          <div id="login" class="btn">Login with Facebook</div>
+          <div id="logout" class="btn">Logout</div>
         </div>
         <div id="display_area" class="span6"></div>
       </div>
     </div>
     <script type="text/javascript" src="js/index.js"></script>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '236955576406422', // App ID
+          channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
+          status     : true, // check login status
+          cookie     : true, // enable cookies to allow the server to access the session
+          xfbml      : true  // parse XFBML
+        });
+        
+        // Additional initialization code here
+      };
+      
+      // Load the SDK Asynchronously
+      (function(d){
+         var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement('script'); js.id = id; js.async = true;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         ref.parentNode.insertBefore(js, ref);
+      }(document));
+      
+      
+    </script>
   </body>
 </html>
