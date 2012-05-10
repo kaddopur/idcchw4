@@ -10,6 +10,44 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
   </head>
   <body>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '236955576406422', // App ID
+          channelUrl : '//localhost/channel.html', // Channel File
+          status     : true, // check login status
+          cookie     : true, // enable cookies to allow the server to access the session
+          xfbml      : true  // parse XFBML
+        });
+        
+        // Additional initialization code here
+        FB.getLoginStatus(function(response){
+          if(response.status === 'connected'){
+            $('#login').hide();
+            $('#logout').show();
+            FB.api('/me', function(response){
+              user_name = response.name;
+              user_picture = 'https://graph.facebook.com/'+response.id+'/picture';
+              $('#profile').attr('src', user_picture);
+              console.log($('#profile'));  
+            });
+          } else {
+            $('#logout').hide();
+            $('#login').show();
+          }
+        });
+      };
+      
+      // Load the SDK Asynchronously
+      (function(d){
+         var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement('script'); js.id = id; js.async = true;
+         js.src = "//connect.facebook.net/en_US/all.js";
+         ref.parentNode.insertBefore(js, ref);
+      }(document));
+      
+    </script>
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container"><a href="/" class="brand">HW4 - r99922066</a></div>
@@ -28,30 +66,5 @@
       </div>
     </div>
     <script type="text/javascript" src="js/index.js"></script>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '236955576406422', // App ID
-          channelUrl : '//localhost/channel.html', // Channel File
-          status     : true, // check login status
-          cookie     : true, // enable cookies to allow the server to access the session
-          xfbml      : true  // parse XFBML
-        });
-        
-        // Additional initialization code here
-      };
-      
-      // Load the SDK Asynchronously
-      (function(d){
-         var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-         if (d.getElementById(id)) {return;}
-         js = d.createElement('script'); js.id = id; js.async = true;
-         js.src = "//connect.facebook.net/en_US/all.js";
-         ref.parentNode.insertBefore(js, ref);
-      }(document));
-      
-      
-      
-    </script>
   </body>
 </html>

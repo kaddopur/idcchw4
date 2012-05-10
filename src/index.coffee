@@ -1,5 +1,5 @@
-user_name = 'Anonymous'
-user_picture = 'img/yetlogin.png'
+user_name = 'Anonymous';
+user_picture = 'img/yetlogin.png';
 
 delete_post = (key) ->
   $.ajax({
