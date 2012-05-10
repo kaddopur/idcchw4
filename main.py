@@ -65,11 +65,11 @@ class Guestbook(webapp2.RequestHandler):
         self.redirect('/posts?' + urllib.urlencode({'guestbook_name': guestbook_name}))
 
 
-class ShowPosts(webapp2.RequestHandler):
+class AllPosts(webapp2.RequestHandler):
     def get(self):
         guestbook_name=self.request.get('guestbook_name')
         greetings_query = Greeting.all().ancestor(guestbook_key(guestbook_name)).order('-date')
-        greetings = greetings_query.fetch(10)
+        greetings = greetings_query.fetch(20)
         
         result = []
         for g in greetings:
@@ -79,13 +79,25 @@ class ShowPosts(webapp2.RequestHandler):
             if g.content:
                 this_greeting['content'] = g.content
             this_greeting['date'] = (g.date + datetime.timedelta(hours=8)).strftime('%m/%d %H:%M')
+            this_greeting['key'] = str(g.key()) 
             result.append(this_greeting)
 
         self.response.out.write(simplejson.dumps(result))
 
 
+class OnePost(webapp2.RequestHandler):
+    def post(self):
+        guestbook_name = self.request.get('guestbook_name')
+        target_key = self.request.get('key')
+        obj = db.get(target_key)
+        obj.delete()
+
+        self.redirect('/posts?' + urllib.urlencode({'guestbook_name': guestbook_name}))
+
+
 app = webapp2.WSGIApplication([('/', MainPage),
                                ('/sign', Guestbook),
-                               ('/posts', ShowPosts)],
+                               ('/posts', AllPosts),
+                               ('/post', OnePost)],
                               debug=True)
 

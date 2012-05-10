@@ -11,10 +11,10 @@ html
   body
     .container
       .row
-        #edit_area.span4
+        #edit_area.span4.well
           textarea.input-xlarge(name='content')
-          button.btn Sign Guestbook
-           a.btn.btn-warning(href='{{ url }}') {{url_linktext }}
+          button#send.btn Sign Guestbook
+          a.btn.btn-warning(href='{{ url }}') {{url_linktext }}
         
         #display_area.span6
         
