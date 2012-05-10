@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap-responsive.min.css">
+    <link type="text/css" rel="stylesheet" href="css/index.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div id="edit_area" class="span4">
+          <textarea name="content" class="input-xlarge"></textarea>
+          <button class="btn">Sign Guestbook</button><a href="{{ url }}" class="btn btn-warning">{{url_linktext }}</a>
+        </div>
+        <div id="display_area" class="span6"></div>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/index.js"></script>
+  </body>
+</html>

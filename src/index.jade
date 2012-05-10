@@ -1,0 +1,23 @@
+!!! 5
+
+html
+  head
+    link(type='text/css', rel='stylesheet', href='css/bootstrap.min.css')
+    link(type='text/css', rel='stylesheet', href='css/bootstrap-responsive.min.css')
+    link(type='text/css', rel='stylesheet', href='css/index.css')
+    
+    script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
+    script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js')
+  body
+    .container
+      .row
+        #edit_area.span4
+          textarea.input-xlarge(name='content')
+          button.btn Sign Guestbook
+           a.btn.btn-warning(href='{{ url }}') {{url_linktext }}
+        
+        #display_area.span6
+        
+    script(type='text/javascript', src='js/index.js')
+
+
