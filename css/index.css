@@ -32,3 +32,6 @@ textarea {
   font-family: 'Lobster', cursive;
   color: #fff;
 }
+blockquote {
+  word-wrap: break-word;
+}

@@ -4,7 +4,7 @@ import urllib
 import webapp2
 import jinja2
 import os
-import simplejson
+import json
 
 from google.appengine.ext import db
 from google.appengine.api import users
@@ -81,7 +81,7 @@ class AllPosts(webapp2.RequestHandler):
             this_greeting['picture'] = g.picture
             result.append(this_greeting)
 
-        self.response.out.write(simplejson.dumps(result))
+        self.response.out.write(json.dumps(result))
 
 
 class OnePost(webapp2.RequestHandler):
